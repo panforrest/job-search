@@ -29921,13 +29921,26 @@ var _superagent = __webpack_require__(2);
 
 var _superagent2 = _interopRequireDefault(_superagent);
 
+var _presentation = __webpack_require__(104);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // let list = this.state.jobs.map((job, i) => {
+// 	return(
+//   <li key={i}>
+//       <div style={style.jobPost}>
+//           <h4>{job.title}</h4>
+//           <p>{job.description}</p>
+
+//       </div>
+//      </li>
+// 	)
+// })
+
 
 var turbo = __webpack_require__(85)({ site_id: process.env.TURBO_APP_ID });
 
@@ -29940,11 +29953,7 @@ var Jobs = function (_Component) {
         var _this = _possibleConstructorReturn(this, (Jobs.__proto__ || Object.getPrototypeOf(Jobs)).call(this));
 
         _this.state = {
-            jobs: [
-                // {id:0, title:'TEST', description:'this is a test job'},
-                // {id:1, title:'TEST 2', description:'this is a test job 2.1'}
-
-            ]
+            jobs: []
         };
         return _this;
     }
@@ -29954,7 +29963,6 @@ var Jobs = function (_Component) {
         value: function componentDidMount() {
             var _this2 = this;
 
-            // console.log('componentDidMount: ')
             _superagent2.default.get('/api/job').query(null).set('Accept', 'application/json').end(function (err, response) {
                 if (err) {
                     console.log(err.message);
@@ -29972,26 +29980,6 @@ var Jobs = function (_Component) {
     }, {
         key: 'render',
         value: function render() {
-            var list = this.state.jobs.map(function (job, i) {
-                return _react2.default.createElement(
-                    'li',
-                    { key: i },
-                    _react2.default.createElement(
-                        'div',
-                        { style: style.jobPost },
-                        _react2.default.createElement(
-                            'h4',
-                            null,
-                            job.title
-                        ),
-                        _react2.default.createElement(
-                            'p',
-                            null,
-                            job.description
-                        )
-                    )
-                );
-            });
 
             return _react2.default.createElement(
                 'div',
@@ -30002,11 +29990,7 @@ var Jobs = function (_Component) {
                     _react2.default.createElement(
                         'div',
                         { className: 'col-md-8' },
-                        _react2.default.createElement(
-                            'ol',
-                            null,
-                            list
-                        )
+                        _react2.default.createElement(_presentation.Preview, null)
                     )
                 )
             );
@@ -30027,6 +30011,127 @@ var style = {
 
 exports.default = Jobs;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 104 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.Preview = undefined;
+
+var _Preview = __webpack_require__(105);
+
+var _Preview2 = _interopRequireDefault(_Preview);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.Preview = _Preview2.default;
+
+/***/ }),
+/* 105 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(3);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _superagent = __webpack_require__(2);
+
+var _superagent2 = _interopRequireDefault(_superagent);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Preview = function (_Component) {
+    _inherits(Preview, _Component);
+
+    function Preview() {
+        _classCallCheck(this, Preview);
+
+        var _this = _possibleConstructorReturn(this, (Preview.__proto__ || Object.getPrototypeOf(Preview)).call(this));
+
+        _this.state = {
+            jobs: []
+        };
+        return _this;
+    }
+
+    _createClass(Preview, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            var _this2 = this;
+
+            _superagent2.default.get('/api/job').query(null).set('Accept', 'application/json').end(function (err, response) {
+                if (err) {
+                    console.log(err.message);
+                    return;
+                }
+
+                var data = response.body.data;
+                console.log('componentDidMount: ' + JSON.stringify(data));
+
+                _this2.setState({
+                    jobs: data
+                });
+            });
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement(
+                    'ol',
+                    null,
+                    this.state.jobs.map(function (job, i) {
+                        return _react2.default.createElement(
+                            'li',
+                            { key: i },
+                            _react2.default.createElement(
+                                'div',
+                                { style: style.jobPost },
+                                _react2.default.createElement(
+                                    'h4',
+                                    null,
+                                    job.title
+                                ),
+                                _react2.default.createElement(
+                                    'p',
+                                    null,
+                                    job.description
+                                )
+                            )
+                        );
+                    })
+                )
+            );
+        }
+    }]);
+
+    return Preview;
+}(_react.Component);
+
+exports.default = Preview;
 
 /***/ })
 ],[35]);

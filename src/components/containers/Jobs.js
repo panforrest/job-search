@@ -1,21 +1,28 @@
+        // let list = this.state.jobs.map((job, i) => {
+        // 	return(
+		      //   <li key={i}>
+		      //       <div style={style.jobPost}>
+		      //           <h4>{job.title}</h4>
+		      //           <p>{job.description}</p>
+
+		      //       </div>
+	       //      </li>
+        // 	)
+        // })
 import React, { Component } from 'react'
 const turbo = require('turbo360')({site_id: process.env.TURBO_APP_ID})
 import superagent from 'superagent'
+import { Preview } from './../presentation'
 
 class Jobs extends Component {
     constructor(){
     	super()
     	this.state = {
-    		jobs: [
-    		    // {id:0, title:'TEST', description:'this is a test job'},
-    		    // {id:1, title:'TEST 2', description:'this is a test job 2.1'}
- 
-    		]
+    		jobs: []
     	}
     }
 
     componentDidMount(){
-    	// console.log('componentDidMount: ')
         superagent.get('/api/job')
         .query(null)
         .set('Accept', 'application/json')
@@ -35,25 +42,14 @@ class Jobs extends Component {
     }
 
 	render(){
-        let list = this.state.jobs.map((job, i) => {
-        	return(
-		        <li key={i}>
-		            <div style={style.jobPost}>
-		                <h4>{job.title}</h4>
-		                <p>{job.description}</p>
-
-		            </div>
-	            </li>
-        	)
-        })
+        
 
 		return(
 			<div>
 			    <div className="row">
                     <div className="col-md-8">
-                        <ol>					    
-                            {list}
-                        </ol>
+                        <Preview />
+                        
 			        </div>
                 </div>
 			</div>
