@@ -29898,17 +29898,17 @@ var Promise=__webpack_require__(1),superagent=__webpack_require__(2),TURBO_VECTO
 /* 102 */
 /***/ (function(module, exports) {
 
-module.exports = {"name":"job-search","version":"0.0.0","server":false,"private":true,"scripts":{"clean":"rm -rf ./public/dist","build":"npm run clean && NODE_ENV=production webpack && gulp prod","postinstall":"npm run build"},"dependencies":{"bluebird":"latest","debug":"latest","dotenv":"latest","moment":"latest","react":"latest","react-bootstrap":"latest","react-dom":"latest","react-dropzone":"latest","react-redux":"latest","react-time":"latest","redux":"latest","redux-thunk":"latest","superagent":"latest","turbo360":"latest","nodemon":"latest","vertex360":"latest"},"devDependencies":{"babel-core":"latest","babel-loader":"latest","babel-preset-es2015":"latest","babel-preset-react":"latest","json-loader":"latest","gulp":"latest","gulp-autoprefixer":"latest","gulp-6to5":"latest","gulp-concat":"latest","gulp-less":"latest","gulp-minify-css":"latest","gulp-rename":"latest","gulp-uglify":"latest","gulp-sass":"latest","chai":"latest","chai-http":"latest","mocha":"latest","mocha-jscs":"latest","mocha-jshint":"latest","rimraf":"latest","webpack":"latest"},"app":"5a4118bf4dad7b00147cd54c","deploy":["."],"format":"vertex"}
+module.exports = {"name":"job-search","version":"0.0.0","server":false,"private":true,"scripts":{"clean":"rm -rf ./public/dist","build":"npm run clean && NODE_ENV=production webpack && gulp prod","postinstall":"npm run build"},"dependencies":{"bluebird":"latest","debug":"latest","dotenv":"latest","moment":"latest","nodemon":"latest","react":"latest","react-bootstrap":"latest","react-dom":"latest","react-dropzone":"latest","react-redux":"latest","react-time":"latest","redux":"latest","redux-thunk":"latest","superagent":"^3.8.2","turbo360":"latest","vertex360":"latest"},"devDependencies":{"babel-core":"latest","babel-loader":"latest","babel-preset-es2015":"latest","babel-preset-react":"latest","json-loader":"latest","gulp":"latest","gulp-autoprefixer":"latest","gulp-6to5":"latest","gulp-concat":"latest","gulp-less":"latest","gulp-minify-css":"latest","gulp-rename":"latest","gulp-uglify":"latest","gulp-sass":"latest","chai":"latest","chai-http":"latest","mocha":"latest","mocha-jscs":"latest","mocha-jshint":"latest","rimraf":"latest","webpack":"latest"},"app":"5a4118bf4dad7b00147cd54c","deploy":["."],"format":"vertex"}
 
 /***/ }),
 /* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
+/* WEBPACK VAR INJECTION */(function(process) {
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+    value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -29916,6 +29916,10 @@ var _createClass = function () { function defineProperties(target, props) { for 
 var _react = __webpack_require__(3);
 
 var _react2 = _interopRequireDefault(_react);
+
+var _superagent = __webpack_require__(2);
+
+var _superagent2 = _interopRequireDefault(_superagent);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -29925,77 +29929,104 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var turbo = __webpack_require__(85)({ site_id: process.env.TURBO_APP_ID });
+
 var Jobs = function (_Component) {
-	_inherits(Jobs, _Component);
+    _inherits(Jobs, _Component);
 
-	function Jobs() {
-		_classCallCheck(this, Jobs);
+    function Jobs() {
+        _classCallCheck(this, Jobs);
 
-		var _this = _possibleConstructorReturn(this, (Jobs.__proto__ || Object.getPrototypeOf(Jobs)).call(this));
+        var _this = _possibleConstructorReturn(this, (Jobs.__proto__ || Object.getPrototypeOf(Jobs)).call(this));
 
-		_this.state = {
-			jobs: [{ id: 0, title: 'TEST', description: 'this is a test job' }, { id: 1, title: 'TEST 2', description: 'this is a test job 2.1' }]
-		};
-		return _this;
-	}
+        _this.state = {
+            jobs: [
+                // {id:0, title:'TEST', description:'this is a test job'},
+                // {id:1, title:'TEST 2', description:'this is a test job 2.1'}
 
-	_createClass(Jobs, [{
-		key: 'render',
-		value: function render() {
-			var list = this.state.jobs.map(function (job, i) {
-				return _react2.default.createElement(
-					'li',
-					{ key: i },
-					_react2.default.createElement(
-						'div',
-						{ style: style.jobPost },
-						_react2.default.createElement(
-							'h4',
-							null,
-							job.title
-						),
-						_react2.default.createElement(
-							'p',
-							null,
-							job.description
-						)
-					)
-				);
-			});
+            ]
+        };
+        return _this;
+    }
 
-			return _react2.default.createElement(
-				'div',
-				null,
-				_react2.default.createElement(
-					'div',
-					{ className: 'row' },
-					_react2.default.createElement(
-						'div',
-						{ className: 'col-md-8' },
-						_react2.default.createElement(
-							'ol',
-							null,
-							list
-						)
-					)
-				)
-			);
-		}
-	}]);
+    _createClass(Jobs, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            var _this2 = this;
 
-	return Jobs;
+            // console.log('componentDidMount: ')
+            _superagent2.default.get('/api/job').query(null).set('Accept', 'application/json').end(function (err, response) {
+                if (err) {
+                    console.log(err.message);
+                    return;
+                }
+
+                var data = response.body.data;
+                console.log('componentDidMount: ' + JSON.stringify(data));
+
+                _this2.setState({
+                    jobs: data
+                });
+            });
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var list = this.state.jobs.map(function (job, i) {
+                return _react2.default.createElement(
+                    'li',
+                    { key: i },
+                    _react2.default.createElement(
+                        'div',
+                        { style: style.jobPost },
+                        _react2.default.createElement(
+                            'h4',
+                            null,
+                            job.title
+                        ),
+                        _react2.default.createElement(
+                            'p',
+                            null,
+                            job.description
+                        )
+                    )
+                );
+            });
+
+            return _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement(
+                    'div',
+                    { className: 'row' },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'col-md-8' },
+                        _react2.default.createElement(
+                            'ol',
+                            null,
+                            list
+                        )
+                    )
+                )
+            );
+        }
+    }]);
+
+    return Jobs;
 }(_react.Component);
 
 var style = {
-	jobPost: {
-		padding: 16,
-		background: '#f9f9f9',
-		border: '1px solid #ddd',
-		marginBottom: 24
-	}
+    jobPost: {
+        padding: 16,
+        background: '#f9f9f9',
+        border: '1px solid #ddd',
+        marginBottom: 24
+    }
 };
 
 exports.default = Jobs;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ })
 ],[35]);
