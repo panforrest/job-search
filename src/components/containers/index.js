@@ -6,9 +6,11 @@
 */
 
 import Users from './Users'
+import Jobs from './Jobs'
 
 export {
 
-	Users
+	Users,
+	Jobs
 	
 }
