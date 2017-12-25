@@ -22,6 +22,19 @@ router.get('/:resource/:id', function(req, res){
 	})
 })
 
+router.post('/job', function(req, res){
+	// res.json({
+	// 	confirmation: 'success',
+	// 	resource: req.params.resource,
+	// 	query: req.query // from the url query string
+	// })
+
+    res.json({
+    	confirmation: 'success',
+    	body: req.body
+    })
+})
+
 
 
 module.exports = router
