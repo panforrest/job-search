@@ -1,51 +1,39 @@
 import React, { Component } from 'react'
 
 class Jobs extends Component {
+    constructor(){
+    	super()
+    	this.state = {
+    		jobs: [
+    		    {id:0, title:'TEST', description:'this is a test job'},
+    		    {id:1, title:'TEST 2', description:'this is a test job 2.1'}
+ 
+    		]
+    	}
+    }
+
 	render(){
+        let list = this.state.jobs.map((job, i) => {
+        	return(
+		        <li key={i}>
+		            <div style={style.jobPost}>
+		                <h4>{job.title}</h4>
+		                <p>{job.description}</p>
+
+		            </div>
+	            </li>
+        	)
+        })
+
 		return(
 			<div>
-
 			    <div className="row">
                     <div className="col-md-8">
-
-		                <ol>
-					        <li>
-					            <div style={style.jobPost}>
-					                <h4>Graphic Designer</h4>
-					                <p>Need someone to create a logo!</p>
-
-					            </div>
-		                    </li>
-
-		                    <li>
-		                        <div style={style.jobPost}>
-					                <h4>Programmer</h4>
-					                <p>Need someone to create my startup website!</p>
-
-					            </div>
-		    
-		                    </li>
-
-		                    <li>
-
-		                        <div style={style.jobPost}>
-					                <h4>Marketer</h4>
-					                <p>Need someone to promote my startup website!</p>
-
-					            </div>
-
-		                    </li>
-					    </ol>
-
-
-                    </div>
-
-                    <div className="col-md-4">
-
-                    </div>
-
+                        <ol>					    
+                            {list}
+                        </ol>
+			        </div>
                 </div>
-
 			</div>
 
 		)
