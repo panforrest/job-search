@@ -21330,6 +21330,69 @@ var Feed = function (_Component) {
 					'h2',
 					null,
 					'This is the Feed Component!'
+				),
+				_react2.default.createElement(
+					'h3',
+					null,
+					'Current Jobs'
+				),
+				_react2.default.createElement(
+					'ol',
+					null,
+					_react2.default.createElement(
+						'li',
+						null,
+						_react2.default.createElement(
+							'div',
+							{ style: { padding: 16, background: '#f9f9f9', border: '1px solid #ddd' } },
+							_react2.default.createElement(
+								'h4',
+								null,
+								'Graphic Designer'
+							),
+							_react2.default.createElement(
+								'p',
+								null,
+								'Need someone to create a logo!'
+							)
+						)
+					),
+					_react2.default.createElement(
+						'li',
+						null,
+						_react2.default.createElement(
+							'div',
+							{ style: { padding: 16, background: '#f9f9f9', border: '1px solid #ddd' } },
+							_react2.default.createElement(
+								'h4',
+								null,
+								'Programmer'
+							),
+							_react2.default.createElement(
+								'p',
+								null,
+								'Need someone to create my startup website!'
+							)
+						)
+					),
+					_react2.default.createElement(
+						'li',
+						null,
+						_react2.default.createElement(
+							'div',
+							{ style: { padding: 16, background: '#f9f9f9', border: '1px solid #ddd' } },
+							_react2.default.createElement(
+								'h4',
+								null,
+								'Graphic Designer'
+							),
+							_react2.default.createElement(
+								'p',
+								null,
+								'Need someone to create a logo!'
+							)
+						)
+					)
 				)
 			);
 		}
