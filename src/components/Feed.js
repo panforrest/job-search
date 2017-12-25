@@ -6,7 +6,7 @@ class Feed extends Component {
 		return (
 			<div className="container">
 			    <h2>This is the Feed Component!</h2>
-			    <h3>Current Jobs</h3>
+			    
 			    <Jobs />
 
                 

@@ -1,18 +1,9 @@
-        // let list = this.state.jobs.map((job, i) => {
-        // 	return(
-		      //   <li key={i}>
-		      //       <div style={style.jobPost}>
-		      //           <h4>{job.title}</h4>
-		      //           <p>{job.description}</p>
-
-		      //       </div>
-	       //      </li>
-        // 	)
-        // })
+// <Preview job={job} /> IS WRONG
+// <Preview {...job} /> THE SAME AS 
 import React, { Component } from 'react'
 const turbo = require('turbo360')({site_id: process.env.TURBO_APP_ID})
 import superagent from 'superagent'
-import { Preview } from './../presentation'
+import { Preview } from '../presentation'
 
 class Jobs extends Component {
     constructor(){
@@ -42,18 +33,24 @@ class Jobs extends Component {
     }
 
 	render(){
-        
-
 		return(
 			<div>
 			    <div className="row">
                     <div className="col-md-8">
-                        <Preview />
-                        
+                        <h3>Current Jobs</h3>
+                        <ol>
+                            { this.state.jobs.map((job, i) => {
+                            	    return(
+		                            	<li key={i}>
+		                                    <Preview title={job.title} desctiption={job.desctiption}/>
+		                            	</li>
+		                            )
+                                })
+                            }
+                        </ol>                        
 			        </div>
                 </div>
 			</div>
-
 		)
 	}
 }

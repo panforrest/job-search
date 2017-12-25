@@ -1,58 +1,22 @@
-import React, { Component } from 'react'
-import superagent from 'superagent'
+import React from 'react'
 
-class Preview extends Component {
-    constructor(){
-    	super()
-    	this.state = {
-    		jobs: []
-    	}
-    }
+export default (props) => {
 
-    componentDidMount(){
-        superagent.get('/api/job')
-        .query(null)
-        .set('Accept', 'application/json')
-        .end((err, response) => {
-            if (err) {
-                console.log(err.message)
-                return
-            }
+    const job = props
 
-            const data = response.body.data
-            console.log('componentDidMount: '+JSON.stringify(data))
-
-            this.setState({
-            	jobs: data
-            })
-        })
-    }
-
-	render(){
-		return(
-
-			<div>
-
-			    <ol>{					    
-                    this.state.jobs.map((job, i) => {
-			        	return(
-					        <li key={i}>
-					            <div style={style.jobPost}>
-					                <h4>{job.title}</h4>
-					                <p>{job.description}</p>
-
-					            </div>
-				            </li>
-			        	)
-                    })
-                }   
-                </ol>
-
-
-			</div>
-
-		)
-	}
+    return(
+        <div style={style.jobPost}>
+            <h4>{job.title}</h4>
+            <p>{job.desctiption}</p>
+        </div>
+    )
 }
 
-export default Preview
+const style={
+	jobPost: {
+		padding: 16,
+		background: '#f9f9f9',
+		border: '1px solid #ddd',
+		marginBottom: 24
+	}
+}
