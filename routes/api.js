@@ -29,6 +29,22 @@ router.post('/job', function(req, res){
 	// 	query: req.query // from the url query string
 	// })
 
+    turbo.create('job', req.body)  //PROMISE
+    .then(data => {
+    	res.json({
+    	    confirmation: 'success',
+    	    data: data	
+    	})
+    	
+    })
+    .catch(err => {
+    	res.json({
+    		confirmation: 'fail',
+    		message: err.message
+    	})
+
+    })
+
     res.json({
     	confirmation: 'success',
     	body: req.body
