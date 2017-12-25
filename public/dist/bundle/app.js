@@ -21344,7 +21344,7 @@ var Feed = function (_Component) {
 						null,
 						_react2.default.createElement(
 							'div',
-							{ style: { padding: 16, background: '#f9f9f9', border: '1px solid #ddd' } },
+							{ style: style.jobPost },
 							_react2.default.createElement(
 								'h4',
 								null,
@@ -21362,7 +21362,7 @@ var Feed = function (_Component) {
 						null,
 						_react2.default.createElement(
 							'div',
-							{ style: { padding: 16, background: '#f9f9f9', border: '1px solid #ddd' } },
+							{ style: style.jobPost },
 							_react2.default.createElement(
 								'h4',
 								null,
@@ -21380,16 +21380,16 @@ var Feed = function (_Component) {
 						null,
 						_react2.default.createElement(
 							'div',
-							{ style: { padding: 16, background: '#f9f9f9', border: '1px solid #ddd' } },
+							{ style: style.jobPost },
 							_react2.default.createElement(
 								'h4',
 								null,
-								'Graphic Designer'
+								'Marketer'
 							),
 							_react2.default.createElement(
 								'p',
 								null,
-								'Need someone to create a logo!'
+								'Need someone to promote my startup website!'
 							)
 						)
 					)
@@ -21400,6 +21400,15 @@ var Feed = function (_Component) {
 
 	return Feed;
 }(_react.Component);
+
+var style = {
+	jobPost: {
+		padding: 16,
+		background: '#f9f9f9',
+		border: '1px solid #ddd',
+		marginBottom: 24
+	}
+};
 
 exports.default = Feed;
 

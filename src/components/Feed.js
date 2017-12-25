@@ -8,7 +8,7 @@ class Feed extends Component {
 			    <h3>Current Jobs</h3>
 			    <ol>
 			        <li>
-			            <div style={{padding:16, background:'#f9f9f9', border:'1px solid #ddd'}}>
+			            <div style={style.jobPost}>
 			                <h4>Graphic Designer</h4>
 			                <p>Need someone to create a logo!</p>
 
@@ -16,7 +16,7 @@ class Feed extends Component {
                     </li>
 
                     <li>
-                        <div style={{padding:16, background:'#f9f9f9', border:'1px solid #ddd'}}>
+                        <div style={style.jobPost}>
 			                <h4>Programmer</h4>
 			                <p>Need someone to create my startup website!</p>
 
@@ -26,23 +26,25 @@ class Feed extends Component {
 
                     <li>
 
-                        <div style={{padding:16, background:'#f9f9f9', border:'1px solid #ddd'}}>
-			                <h4>Graphic Designer</h4>
-			                <p>Need someone to create a logo!</p>
+                        <div style={style.jobPost}>
+			                <h4>Marketer</h4>
+			                <p>Need someone to promote my startup website!</p>
 
 			            </div>
 
                     </li>
-			            
-
-			            
-
-
-			        
-
 			    </ol>
 			</div>
 		)
+	}
+}
+
+const style={
+	jobPost: {
+		padding: 16,
+		background: '#f9f9f9',
+		border: '1px solid #ddd',
+		marginBottom: 24
 	}
 }
 
