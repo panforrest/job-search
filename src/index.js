@@ -2,12 +2,12 @@ import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import store from './stores'
 import { Provider } from 'react-redux'
-// import Intro from './components/Intro'
+import Feed from './components/Feed'
 
 
 const app = (
 	<div>
-        <h1>Job Search App!</h1>
+        <Feed />
 	</div>
 )
 
