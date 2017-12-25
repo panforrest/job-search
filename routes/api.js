@@ -5,13 +5,32 @@ const router = vertex.router()
 
 /*  This is a sample API route. */
 
-router.get('/:resource', function(req, res){
-	res.json({
-		confirmation: 'success',
-		resource: req.params.resource,
-		query: req.query // from the url query string
-	})
+router.get('/job', function(req, res){
+
+    turbo.fetch('job', null)
+    .then(data => {
+    	res.json({
+    	    confirmation: 'success',
+    	    data: data	
+    	})
+    	
+    })
+    .catch(err => {
+    	res.json({
+    		confirmation: 'fail',
+    		message: err.message || 'Oops! Something went wrong!'
+    	})
+
+    })
 })
+
+// router.get('/:resource', function(req, res){
+// 	res.json({
+// 		confirmation: 'success',
+// 		resource: req.params.resource,
+// 		query: req.query // from the url query string
+// 	})
+// })
 
 router.get('/:resource/:id', function(req, res){
 	res.json({
@@ -23,11 +42,6 @@ router.get('/:resource/:id', function(req, res){
 })
 
 router.post('/job', function(req, res){
-	// res.json({
-	// 	confirmation: 'success',
-	// 	resource: req.params.resource,
-	// 	query: req.query // from the url query string
-	// })
 
     turbo.create('job', req.body)  //PROMISE
     .then(data => {
@@ -40,15 +54,15 @@ router.post('/job', function(req, res){
     .catch(err => {
     	res.json({
     		confirmation: 'fail',
-    		message: err.message
+    		message: err.message || 'Oops! Something went wrong!'
     	})
 
     })
 
-    res.json({
-    	confirmation: 'success',
-    	body: req.body
-    })
+    // res.json({
+    // 	confirmation: 'success',
+    // 	body: req.body
+    // })
 })
 
 
